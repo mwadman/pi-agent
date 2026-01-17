@@ -13,12 +13,14 @@ RUN apk add --no-cache \
 RUN npm install -g @mariozechner/pi-coding-agent
 
 # Create directories (app for code, .pi for agent configuration)
-RUN mkdir -p /app && chown -R node:node /app
-RUN mkdir -p /home/node/.pi && chown -R node:node /home/node
+RUN mkdir -p /app && \
+    mkdir -p /home/node/.pi && \
+    chgrp -R 0 /app && \
+    chgrp -R 0 /home/node && \
+    chmod -R g=u /app && \
+    chmod -R g=u /home/node
+ENV HOME=/home/node
 
-# Use non-root 'node' user
-USER node
-
-# Enter code directory and run agent
+# Enter code directory and run agent by default
 WORKDIR /app
 ENTRYPOINT ["pi"]
