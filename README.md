@@ -2,7 +2,12 @@
 
 ## Build
 
-`docker build -t michaelwadman/pi-agent .`
+```bash
+# Build a specific version
+docker build -t michaelwadman/pi-agent:0.49.0 --build-arg PI_VERSION='0.49.0' .
+# Build the latest version
+docker build -t michaelwadman/pi-agent:latest --build-arg PI_VERSION='latest' .
+```
 
 ## Setup
 

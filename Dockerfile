@@ -1,5 +1,7 @@
 FROM node:24-alpine
 
+ARG PI_VERSION='latest'
+
 # Install agent system dependencies
 RUN apk add --no-cache \
     bash \
@@ -10,7 +12,7 @@ RUN apk add --no-cache \
     ripgrep
 
 # Install agent
-RUN npm install -g @mariozechner/pi-coding-agent
+RUN npm install -g @mariozechner/pi-coding-agent@${PI_VERSION}
 
 # Create directories (app for code, .pi for agent configuration)
 RUN mkdir -p /app && \
