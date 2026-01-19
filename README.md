@@ -5,7 +5,7 @@
 ```bash
 # Build a specific version
 docker build -t michaelwadman/pi-agent:0.49.0 --build-arg PI_VERSION='0.49.0' .
-# Build the latest version
+# Build the latest version. Note this layer is cached and won't rebuilt another 'latest' without `--no-cache` appended.
 docker build -t michaelwadman/pi-agent:latest --build-arg PI_VERSION='latest' .
 ```
 
@@ -29,8 +29,13 @@ docker run -it --rm --name pi-agent \
   -e TERM=$TERM \
   -v "$(pwd):/app" \
   -v "$HOME/.pi:/home/node/.pi" \
+  -v "$HOME/.gitconfig:/home/node/.gitconfig" \
   michaelwadman/pi-agent:latest
 ```
 
-If using environment variables for API authentication, add this to the run command too (e.g. `-e ANTHROPIC_API_KEY="your_api_key_here"`).  
-If you want to use the `/login` command to authenticate to services with OAuth, you will need to set host networking mode with `--network host`
+### Notes
+
+- **Git Identity**: Mounting `.gitconfig` allows the agent to make commits using your git identity. If you use a credential manager on your host, you may still need to provide credentials manually or via environment variables inside the container.
+- **API Authentication**: If using environment variables for API authentication, add them to the run command (e.g., `-e ANTHROPIC_API_KEY="your_api_key_here"`).
+- **OAuth Login**: If you want to use the `/login` command to authenticate to services with OAuth, you will need to set host networking mode with `--network host`.
+- **SSH Support**: If your git repositories use SSH, you may need to mount your SSH agent socket to allow the container to authenticate with `-v "$SSH_AUTH_SOCK:/run/host-services/ssh-auth.sock" -e SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock`.
