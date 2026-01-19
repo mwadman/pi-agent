@@ -25,8 +25,8 @@ See [API Keys and OAuth](https://github.com/badlogic/pi-mono/tree/main/packages/
 
 ```bash
 docker run -it --rm --name pi-agent \
-  --init
-  -e TERM=$TERM
+  --init \
+  -e TERM=$TERM \
   -v "$(pwd):/app" \
   -v "$HOME/.pi:/home/node/.pi" \
   michaelwadman/pi-agent:latest
