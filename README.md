@@ -1,13 +1,21 @@
 # Pi Agent Container
 
-## Build
+## Build and push
 
 ```bash
-# Build a specific version
-docker build -t michaelwadman/pi-agent:0.49.0 --build-arg PI_VERSION='0.49.0' .
-# Build the latest version. Note this layer is cached and won't rebuilt another 'latest' without `--no-cache` appended.
-docker build -t michaelwadman/pi-agent:latest --build-arg PI_VERSION='latest' .
+docker build -t michaelwadman/pi-agent:0.49.2 --build-arg PI_VERSION='0.49.2' .
+docker tag michaelwadman/pi-agent:0.49.2 michaelwadman/pi-agent:latest
+docker push michaelwadman/pi-agent:0.49.2
+docker push michaelwadman/pi-agent:latest
 ```
+
+### Automated Builds
+
+The Github action defined in `.github/workflows/publish.yml`:
+
+1. Checks for the latest version of `@mariozechner/pi-coding-agent` on npm every 6 hours.
+2. Checks if the relevant image version already exists on Docker Hub.
+3. If an image doesn't exist for the latest version, automatically builds and pushes it with both the version tag and `latest`.
 
 ## Setup
 
