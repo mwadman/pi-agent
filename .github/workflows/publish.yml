@@ -1,8 +1,8 @@
 name: Publish Docker Image
 
 on:
-  schedule:
-    - cron: '0 */6 * * *' # Every 6 hours
+  schedule: # Every 6 hours, on the 22nd minute to avoid Github action congestion
+    - cron: '22 */6 * * *'
   workflow_dispatch: # Allows manual triggering without inputs
 
 jobs:
