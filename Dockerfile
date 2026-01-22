@@ -11,7 +11,10 @@ RUN apk add --no-cache \
     ca-certificates \
     curl \
     fd \
+    file \
     git \
+    jq \
+    openssh-client \
     ripgrep
 
 # Install agent
