@@ -35,7 +35,7 @@ RUN echo "Include /home/node/.ssh/config" >> /etc/ssh/ssh_config && \
     echo "StrictHostKeyChecking accept-new" >> /etc/ssh/ssh_config
 
 # Install agent
-RUN npm install -g @mariozechner/pi-coding-agent@${PI_VERSION} && \
+RUN npm install -g @earendil-works/pi-coding-agent@${PI_VERSION} && \
     npm cache clean --force
 
 # Enter code directory and run agent by default

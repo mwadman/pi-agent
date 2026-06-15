@@ -5,7 +5,7 @@
 ### Automated Builds
 
 A Github action is defined in `.github/workflows/publish.yml` to build a new image and push this to Dockerhub.  
-This is triggered by a workflow in pipedream.com, which makes an POST request whenever a new version of the "@mariozechner/pi-coding-agent" npm package is available.
+This is triggered by a workflow in pipedream.com, which makes an POST request whenever a new version of the "@earendil-works/pi-coding-agent" npm package is available.
 
 This workflow:
 

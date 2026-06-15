@@ -13,7 +13,7 @@ jobs:
       - name: Get latest version
         id: npm
         run: |
-          VERSION=$(npm show @mariozechner/pi-coding-agent version --no-update-notifier | head -n 1)
+          VERSION=$(npm show @earendil-works/pi-coding-agent version --no-update-notifier | head -n 1)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Check if image exists
